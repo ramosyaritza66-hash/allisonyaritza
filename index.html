@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carreras - Instituto Franklin Delano Roosevelt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --primary: #8e44ad;
+      --secondary: #e84393;
+      --light: #f8c8e6;
+      --dark: #2c3e50;
+      --accent: #fd79a8;
+      --gradient: linear-gradient(135deg, #8e44ad 0%, #e84393 100%);
+    }
+
+    body {
+      background: #faf7f2;
+      color: var(--dark);
+      line-height: 1.6;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* Barra de navegación */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--primary);
+      padding: 15px 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 8px 15px;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background-color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    /* Barra de navegación del primer código */
+    .nav-menu-original {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      list-style: none;
+    }
+
+    .nav-link-original {
+      color: var(--primary);
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+
+    .nav-link-original:hover, .nav-link-original.active {
+      background: var(--gradient);
+      color: white;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(142, 68, 173, 0.15);
+      overflow: hidden;
+    }
+
+    header {
+      background: var(--gradient);
+      color: white;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-text {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .subtitle {
+      font-style: italic;
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    .content-section {
+      padding: 50px 40px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      color: var(--primary);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .careers-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .career-card {
+      background: white;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(142, 68, 173, 0.15);
+      transition: all 0.4s ease;
+      border: 3px solid var(--light);
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 25px;
+    }
+
+    .career-card:nth-child(1) { animation-delay: 0.1s; }
+    .career-card:nth-child(2) { animation-delay: 0.2s; }
+    .career-card:nth-child(3) { animation-delay: 0.3s; }
+    .career-card:nth-child(4) { animation-delay: 0.4s; }
+    .career-card:nth-child(5) { animation-delay: 0.5s; }
+    .career-card:nth-child(6) { animation-delay: 0.6s; }
+    .career-card:nth-child(7) { animation-delay: 0.7s; }
+
+    .career-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 15px 35px rgba(142, 68, 173, 0.25);
+      border-color: var(--accent);
+    }
+
+    .career-icon-container {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--gradient);
+      margin: -40px auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.8rem;
+      border: 5px solid white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .career-card:hover .career-icon-container {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .career-title {
+      font-size: 1.5rem;
+      margin: 10px 20px 15px;
+      color: var(--primary);
+      position: relative;
+    }
+
+    .career-body {
+      padding: 0 25px;
+      position: relative;
+      width: 100%;
+    }
+
+    .career-description {
+      margin-bottom: 20px;
+      line-height: 1.6;
+      color: var(--dark);
+      font-size: 1rem;
+    }
+
+    .classes-title {
+      color: var(--secondary);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      border-bottom: 2px solid var(--light);
+      padding-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .classes-list {
+      list-style-type: none;
+      margin-bottom: 15px;
+    }
+
+    .classes-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #f0e2d3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .classes-list li:hover {
+      background-color: rgba(248, 200, 230, 0.3);
+      padding-left: 10px;
+      border-radius: 20px;
+    }
+
+    .classes-list li:before {
+      content: '•';
+      color: var(--accent);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-right: 8px;
+      font-size: 1.4rem;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .quote {
+      margin-top: 20px;
+      font-style: italic;
+      color: var(--light);
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 20px auto 0;
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .nav-link {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .careers-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .career-icon-container {
+        width: 100px;
+        height: 100px;
+        font-size: 2.2rem;
+      }
+      
+      .nav-menu-original {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .nav-link-original {
+        margin: 5px 0;
+      }
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    /* Efecto de acordeón para las materias */
+    .classes-container {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .career-card.active .classes-container {
+      max-height: 500px;
+    }
+
+    .toggle-classes {
+      background: var(--gradient);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 15px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 8px rgba(142, 68, 173, 0.2);
+    }
+
+    .toggle-classes:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(142, 68, 173, 0.3);
+      background: linear-gradient(135deg, #9b59b6 0%, #fd79a8 100%);
+    }
+
+    /* Elementos decorativos cute */
+    .cute-dots {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+    
+    .sticker {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--secondary);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transform: rotate(5deg);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      z-index: 3;
+    }
+
+    /* Decoraciones de burbujas en el header */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+    
+    .bubble-1 {
+      width: 80px;
+      height: 80px;
+      top: -20px;
+      left: 5%;
+    }
+    
+    .bubble-2 {
+      width: 50px;
+      height: 50px;
+      bottom: -15px;
+      right: 10%;
+    }
+    
+    .bubble-3 {
+      width: 40px;
+      height: 40px;
+      top: 30%;
+      right: 20%;
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Contenido principal -->
+  <div class="container">
+    <header>
+      <div class="bubble bubble-1"></div>
+      <div class="bubble bubble-2"></div>
+      <div class="bubble bubble-3"></div>
+      
+      <div class="header-content">
+        <div class="header-text">
+          <h1>Oferta Académica</h1>
+          <p class="subtitle">Formación técnica de calidad para el desarrollo de Puerto Cortés y Honduras</p>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Barra de navegación del primer código -->
+    <ul class="nav-menu-original">
+        <li><a href="index.html" class="nav-link-original"><i class="fas fa-home"></i> <span>Inicio</span></a></li>
+        <li><a href="carreras.html" class="nav-link-original active"><i class="fas fa-graduation-cap"></i> <span>Carreras</span></a></li>
+        <li><a href="graduados.html" class="nav-link-original"><i class="fas fa-user-graduate"></i> <span>Graduados</span></a></li>
+    </ul>
+
+    <div class="content-section">
+      <h2 class="section-title">Carreras Técnicas Disponibles</h2>
+      <div class="careers-container">
+        <!-- Hotelería y Turismo -->
+        <div class="career-card">
+          <div class="sticker">Nuevo</div>
+          <div class="cute-dots">
+            <div class="dot" style="top: 30%; left: 15%;"></div>
+            <div class="dot" style="top: 70%; right: 20%;"></div>
+          </div>
+          <div class="career-icon-container">
+            <i class="fas fa-hotel"></i>
+          </div>
+          <h3 class="career-title">Hotelería y Turismo</h3>
+          <div class="career-body">
+            <p class="career-description">
+              Formación en gestión de servicios hoteleros y turísticos, preparando profesionales para la creciente industria del turismo en Honduras.
+            </p>
+            <h4 class="classes-title">Materias Principales:</h4>
+            <div class="classes-container">
+              <ul class="classes-list">
+                <li>Gestión de Alimentos y Bebidas</li>
+                <li>Operaciones de Recepción Hotelera</li>
+                <li>Planificación de Eventos y Convenciones</li>
+                <li>Turismo Sostenible</li>
+                <li>Marketing Turístico</li>
+                <li>Atención al Cliente en Hospitality</li>
+              </ul>
+            </div>
+            <button class="toggle-classes"><i class="fas fa-book-open"></i> Ver materias</button>
+          </div>
+        </div>
+        
+        <!-- Construcciones Metálicas -->
+        <div class="career-card">
+          <div class="cute-dots">
+            <div class="dot" style="top: 20%; right: 10%;"></div>
+            <div class="dot" style="bottom: 30%; left: 15%;"></div>
+          </div>
+          <div class="career-icon-container">
+            <i class="fas fa-hard-hat"></i>
+          </div>
+          <h3 class="career-title">Construcciones Metálicas</h3>
+          <div class="career-body">
+            <p class="career-description">
+              Capacitación técnica en diseño, fabricación y montaje de estructuras metálicas para la construcción e industria.
+            </p>
+            <h4 class="classes-title">Materias Principales:</h4>
+            <div class="classes-container">
+              <ul class="classes-list">
+                <li>Técnicas de Soldadura Avanzada</li>
+                <li>Interpretación de Planos Estructurales</li>
+                <li>Cálculo de Estructuras Metálicas</li>
+                <li>Normas de Seguridad Industrial</li>
+                <li>Metrología and Control de Calidad</li>
+                <li>Fabricación de Elementos Metálicos</li>
+              </ul>
+            </div>
+            <button class="toggle-classes"><i class="fas fa-book-open"></i> Ver materias</button>
+          </div>
+        </div>
+        
+        <!-- Informática -->
+        <div class="career-card">
+          <div class="sticker">Popular</div>
+          <div class="cute-dots">
+            <div class="dot" style="top: 40%; left: 10%;"></div>
+            <div class="dot" style="bottom: 20%; right: 15%;"></div>
+          </div>
+          <div class="career-icon-container">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3 class="career-title">Informática</h3>
+          <div class="career-body">
+            <p class="career-description">
+              Formación en tecnologías de la información, programación, networks y soporte técnico.
+            </p>
+            <h4 class="classes-title">Materias Principales:</h4>
+            <div class="classes-container">
+              <ul class="classes-list">
+                <li>Programación</li>
+                <li>Producciones digitales</li>
+                <li>Redes informáticas</li>
+                <li>Desarrollo Web</li>
+                <li>Mantenimiento and Reparación</li>
+                <li>Gestión Empresarial</li>
+              </ul>
+            </div>
+            <button class="toggle-classes"><i class="fas fa-book-open"></i> Ver materias</button>
+          </div>
+        </div>
+        
+        <!-- Robótica -->
+        <div class="career-card">
+          <div class="cute-dots">
+            <div class="dot" style="top: 25%; right: 20%;"></div>
+            <div class="dot" style="bottom: 40%; left: 10%;"></div>
+          </div>
+          <div class="career-icon-container">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3 class="career-title">Robótica</h3>
+          <div class="career-body">
+            <p class="career-description">
+              Programa especializado en automatización, mecatrónica y sistemas robóticos para aplicaciones industriales.
+            </p>
+            <h4 class="classes-title">Materias Principales:</h4>
+            <div class="classes-container">
+              <ul class="classes-list">
+                <li>Principios de Mecatrónica</li>
+                <li>Programación de Robots Industriales</li>
+                <li>Sensores and Actuadores</li>
+                <li>Sistemas Automatizados de Control</li>
+                <li>Inteligencia Artificial Aplicada</li>
+                <li>Diseño de Sistemas Embebidos</li>
+              </ul>
+            </div>
+            <button class="toggle-classes"><i class="fas fa-book-open"></i> Ver materias</button>
+          </div>
+        </div>
+        
+        <!-- Contaduría y Finanzas -->
+        <div class="career-card">
+          <div class="sticker">Próximo inicio</div>
+          <div class="cute-dots">
+            <div class="dot" style="top: 60%; left: 15%;"></div>
+            <div class="dot" style="bottom: 25%; right: 10%;"></div>
+          </div>
+          <div class="career-icon-container">
+            <i class="fas fa-calculator"></i>
+          </div>
+          <h3 class="career-title">Contaduría y Finanzas</h3>
+          <div class="career-body">
+            <p class="career-description">
+              Formación en gestión contable, financiera y fiscal para empresas y organizaciones.
+            </p>
+            <h4 class="classes-title">Materias Principales:</h4>
+            <div class="classes-container">
+              <ul class="classes-list">
+                <li>Contabilidad General and Avanzada</li>
+                <li>Análisis Financiero</li>
+                <li>Legislación Tributaria</li>
+                <li>Auditoría and Control Interno</li>
+                <li>Costos and Presupuestos</li>
+                <li>Software Contable</li>
+              </ul>
+            </div>
+            <button class="toggle-classes"><i class="fas fa-book-open"></i> Ver materias</button>
+          </div>
+        </div>
+        
+        <!-- Ciencias y Humanidades -->
+        <div class="career-card">
+          <div class="cute-dots">
+            <div class="dot" style="top: 35%; right: 15%;"></div>
+            <div class="dot" style="bottom: 35%; left: 20%;"></div>
+          </div>
+          <div class="career-icon-container">
+            <i class="fas fa-book-reader"></i>
+          </div>
+          <h3 class="career-title">Ciencias y Humanidades</h3>
+          <div class="career-body">
+            <p class="career-description">
+              Programa integral que combina el estudio de las ciencias sociales, literatura, historia y filosofía.
+            </p>
+            <h4 class="classes-title">Materias Principales:</h4>
+            <div class="classes-container">
+              <ul class="classes-list">
+                <li>Literatura Universal</li>
+                <li>Historia de Honduras and América</li>
+                <li>Filosofía and Ética</li>
+                <li>Psicología Social</li>
+                <li>Metodología de la Investigación</li>
+                <li>Sociología and Antropología</li>
+              </ul>
+            </div>
+            <button class="toggle-classes"><i class="fas fa-book-open"></i> Ver materias</button>
+          </div>
+        </div>
+        
+        <!-- Banca y Finanzas -->
+        <div class="career-card">
+          <div class="cute-dots">
+            <div class="dot" style="top: 20%; left: 10%;"></div>
+            <div class="dot" style="bottom: 20%; right: 15%;"></div>
+          </div>
+          <div class="career-icon-container">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="career-title">Banca y Finanzas</h3>
+          <div class="career-body">
+            <p class="career-description">
+              Especialización en operaciones bancarias, productos financieros, análisis de inversiones y gestión de riesgos.
+            </p>
+            <h4 class="classes-title">Materias Principales:</h4>
+            <div class="classes-container">
+              <ul class="classes-list">
+                <li>Operaciones Bancarias</li>
+                <li>Análisis de Riesgo Crediticio</li>
+                <li>Productos and Servicios Financieros</li>
+                <li>Gestión de Cartera de Inversiones</li>
+                <li>Banca Digital and Fintech</li>
+                <li>Legislación Financiera</li>
+              </ul>
+            </div>
+            <button class="toggle-classes"><i class="fas fa-book-open"></i> Ver materias</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p><strong>Instituto Franklin Delano Roosevelt</strong> - "Educación que transforma vidas y construye futuro"</p>
+      <p class="quote">"La función de la educación es enseñar a pensar intensamente y críticamente. Inteligencia más carácter: esa es la meta de la verdadera educación" - Martin Luther King Jr.</p>
+      <p>© 2025 - Todos los derechos reservados</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // Efecto de aparición para las tarjetas de carreras
+    document.addEventListener('DOMContentLoaded', function() {
+      const careerCards = document.querySelectorAll('.career-card');
+      careerCards.forEach((card, index) => {
+        card.classList.add('animate-card');
+        card.style.animationDelay = (index * 0.2) + 's';
+      });
+      
+      // Marcar como activo el enlace actual
+      const currentPage = window.location.pathname.split('/').pop();
+      document.querySelectorAll('.nav-link').forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+          link.classList.add('active');
+        }
+      });
+      
+      // También para la barra de navegación original
+      document.querySelectorAll('.nav-link-original').forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+          link.classList.add('active');
+        }
+      });
+
+      // Funcionalidad para el acordeón de materias
+      const toggleButtons = document.querySelectorAll('.toggle-classes');
+      toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const card = this.closest('.career-card');
+          card.classList.toggle('active');
+          
+          if (card.classList.contains('active')) {
+            this.innerHTML = '<i class="fas fa-times"></i> Ocultar materias';
+          } else {
+            this.innerHTML = '<i class="fas fa-book-open"></i> Ver materias';
+          }
+        });
+      });
+
+      // Añadir puntos decorativos aleatorios
+      const cards = document.querySelectorAll('.career-card');
+      cards.forEach(card => {
+        const dotsContainer = card.querySelector('.cute-dots');
+        for (let i = 0; i < 4; i++) {
+          const dot = document.createElement('div');
+          dot.classList.add('dot');
+          dot.style.top = Math.random() * 80 + 10 + '%';
+          dot.style.left = Math.random() * 80 + 10 + '%';
+          dot.style.width = dot.style.height = (5 + Math.random() * 8) + 'px';
+          dot.style.opacity = 0.2 + Math.random() * 0.3;
+          dotsContainer.appendChild(dot);
+        }
+      });
+    });
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carreras - Instituto Franklin Delano Roosevelt</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --primary: #8e44ad;
+      --secondary: #e84393;
+      --light: #f8c8e6;
+      --dark: #2c3e50;
+      --accent: #fd79a8;
+      --gradient: linear-gradient(135deg, #8e44ad 0%, #e84393 100%);
+    }
+
+    body {
+      background: #faf7f2;
+      color: var(--dark);
+      line-height: 1.6;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* Barra de navegación */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--primary);
+      padding: 15px 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-logo {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 15px;
+    }
+
+    .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 8px 15px;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background-color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    /* Barra de navegación del primer código */
+    .nav-menu-original {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+      list-style: none;
+    }
+
+    .nav-link-original {
+      color: var(--primary);
+      text-decoration: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      border-radius: 30px;
+      font-weight: bold;
+    }
+
+    .nav-link-original:hover, .nav-link-original.active {
+      background: var(--gradient);
+      color: white;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(142, 68, 173, 0.15);
+      overflow: hidden;
+    }
+
+    header {
+      background: var(--gradient);
+      color: white;
+      padding: 40px;
+      text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-text {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .subtitle {
+      font-style: italic;
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    .content-section {
+      padding: 50px 40px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      color: var(--primary);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    .careers-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .career-card {
+      background: white;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(142, 68, 173, 0.15);
+      transition: all 0.4s ease;
+      border: 3px solid var(--light);
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 25px;
+    }
+
+    .career-card:nth-child(1) { animation-delay: 0.1s; }
+    .career-card:nth-child(2) { animation-delay: 0.2s; }
+    .career-card:nth-child(3) { animation-delay: 0.3s; }
+    .career-card:nth-child(4) { animation-delay: 0.4s; }
+    .career-card:nth-child(5) { animation-delay: 0.5s; }
+    .career-card:nth-child(6) { animation-delay: 0.6s; }
+    .career-card:nth-child(7) { animation-delay: 0.7s; }
+
+    .career-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 15px 35px rgba(142, 68, 173, 0.25);
+      border-color: var(--accent);
+    }
+
+    .career-icon-container {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--gradient);
+      margin: -40px auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.8rem;
+      border: 5px solid white;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .career-card:hover .career-icon-container {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .career-title {
+      font-size: 1.5rem;
+      margin: 10px 20px 15px;
+      color: var(--primary);
+      position: relative;
+    }
+
+    .career-body {
+      padding: 0 25px;
+      position: relative;
+      width: 100%;
+    }
+
+    .career-description {
+      margin-bottom: 20px;
+      line-height: 1.6;
+      color: var(--dark);
+      font-size: 1rem;
+    }
+
+    .classes-title {
+      color: var(--secondary);
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+      border-bottom: 2px solid var(--light);
+      padding-bottom: 5px;
+      font-weight: 600;
+    }
+
+    .classes-list {
+      list-style-type: none;
+      margin-bottom: 15px;
+    }
+
+    .classes-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid #f0e2d3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .classes-list li:hover {
+      background-color: rgba(248, 200, 230, 0.3);
+      padding-left: 10px;
+      border-radius: 20px;
+    }
+
+    .classes-list li:before {
+      content: '•';
+      color: var(--accent);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-right: 8px;
+      font-size: 1.4rem;
+    }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .quote {
+      margin-top: 20px;
+      font-style: italic;
+      color: var(--light);
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 20px auto 0;
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .nav-link {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+      
+      h1 {
+        font-size: 2.2rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .careers-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .career-icon-container {
+        width: 100px;
+        height: 100px;
+        font-size: 2.2rem;
+      }
+      
+      .nav-menu-original {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .nav-link-original {
+        margin: 5px 0;
+      }
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    /* Efecto de acordeón para las materias */
+    .classes-container {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .career-card.active .classes-container {
+      max-height: 500px;
+    }
+
+    .toggle-classes {
+      background: var(--gradient);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 15px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 8px rgba(142, 68, 173, 0.2);
+    }
+
+    .toggle-classes:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(142, 68, 173, 0.3);
+      background: linear-gradient(135deg, #9b59b6 0%, #fd79a8 100%);
+    }
+
+    /* Elementos decorativos cute */
+    .cute-dots {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+    
+    .sticker {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--secondary);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transform: rotate(5deg);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      z-index: 3;
+    }
+
+    /* Decoraciones de burbujas en el header */
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+    
+    .bubble-1 {
+      width: 80px;
+      height: 80px;
+      top: -20px;
+      left: 5%;
+    }
+    
+    .bubble-2 {
+      width: 50px;
+      height: 50px;
+      bottom: -15px;
+      right: 10%;
+    }
+    
+    .bubble-3 {
+      width: 40px;
+      height: 40px;
+      top: 30%;
+      right: 20%;
+    }
+  </style>
+</head>
+<body>
+
